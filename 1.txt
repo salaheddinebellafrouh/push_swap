@@ -1,0 +1,915 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_big_Sort.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/05 19:49:09 by sbellafr          #+#    #+#             */
+/*   Updated: 2023/02/22 01:06:20 by sbellafr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void	bubble_sort(int arr[], int n)
+{
+	int	i;
+	int	j;
+	int	temp;
+
+	i = 0;
+	while (i < n - 1)
+	{
+		j = 0;
+		while (j < n - i - 1)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+				j = -1;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+int	*ft_duplicate(stack_a *s)
+{
+	int	i;
+	int	*dup;
+
+	i = 0;
+	dup = malloc(sizeof(int) * (s->top + 1));
+	while (i <= s->top)
+	{
+		dup[i] = s->array[i];
+		i++;
+	}
+	return (dup);
+}
+
+void	ft_chunk(int *k, int chunk, stack_a *stack, stack_b *stack_b, int *tmp, int *r, int j)
+{
+	while (*k <= chunk)
+	{
+		if ((stack->array[stack->top] >= tmp[0])
+			&& (stack->array[stack->top] <= tmp[chunk]))
+		{
+			if (!(stack->array[stack->top] >= tmp[chunk * j - chunk / 2]))
+			{
+				pb(stack, stack_b);
+				(*r)++;
+			}
+			else
+			{
+				pb(stack, stack_b);
+				(*r)++;
+				rb(stack_b);
+			}
+			(*k)++;
+		}
+		else
+			ra(stack);
+	}
+}
+
+void	ft_big_sort(stack_a *stack, stack_b *stack_b, int i)
+{
+	int	r;
+	int	*tmp;
+	int	chunk;
+	int	k;
+
+	stack_b = ft_init_b(i);
+	tmp = ft_duplicate(stack);
+	bubble_sort(tmp, i);
+	chunk = i / 5;
+	k = 0;
+	r = 0;
+	ft_chunk(&k, chunk, stack, stack_b, tmp, &r, 1);
+	ft_chunk(&k, chunk * 2, stack, stack_b, tmp, &r, 2);
+	ft_chunk(&k, chunk * 3, stack, stack_b, tmp, &r, 3);
+	ft_chunk(&k, chunk * 4, stack, stack_b, tmp, &r, 4);
+	ft_chunk(&k, chunk * 5 - 1, stack, stack_b, tmp, &r, 5);
+	while (r++ < i)
+		pb(stack, stack_b);
+	push_sorted_numbers_to_stack_a (stack, stack_b, tmp);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_big_little.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/20 01:46:57 by sbellafr          #+#    #+#             */
+/*   Updated: 2023/02/22 00:48:54 by sbellafr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void	ft_big_little(stack_a *stack, stack_b *stack_b, int i)
+{
+	if (i == 1 || i == 0)
+		return ;
+	if (i >= 2 && i < 6)
+		ft_simple_sort(stack, stack_b, i);
+	else
+		ft_big_sort(stack, stack_b, i);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_check_empty.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/19 23:25:18 by sbellafr          #+#    #+#             */
+/*   Updated: 2023/02/22 01:51:37 by sbellafr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void	ft_check_empty(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '\0')
+	{
+		write(2, "error\n", 6);
+		exit(0);
+	}
+	i = 0;
+	while (str[i] == ' ')
+	{
+		if (str[i] != ' ' && str[i])
+		{
+			break ;
+		}
+		i++;
+		if (str[i] == '\0')
+			ft_error();
+	}
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_dup.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/20 01:08:35 by sbellafr          #+#    #+#             */
+/*   Updated: 2023/02/22 01:51:30 by sbellafr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void	ft_check_dup(stack_a *stack)
+{
+	int	m;
+	int	i;
+
+	i = stack->top;
+	while (i >= 0)
+	{
+		m = 1;
+		while (stack->array[i] != stack->array[i - m] && m < i)
+		{
+			m++;
+		}
+		if (stack->array[i] == stack->array[i - m])
+			ft_error();
+		i--;
+	}
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_instructions.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/01 15:50:42 by sbellafr          #+#    #+#             */
+/*   Updated: 2023/02/20 19:27:28 by sbellafr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void	sa(stack_a *stack)
+{
+	int	store;
+
+	store = stack->array[stack->top];
+	stack->array[stack->top] = stack->array[stack->top - 1];
+	stack->array[stack->top - 1] = store;
+	write(1, "sa\n", 3);
+}
+
+void	pa(stack_a *a, stack_b *b)
+{
+	a->top++;
+	a->array[a->top] = b->array[b->top];
+	b->top--;
+	write(1, "pa\n", 3);
+}
+
+void	pb(stack_a *a, stack_b *b)
+{
+	b->top++;
+	b->array[b->top] = a->array[a->top];
+	a->top--;
+	write(1, "pb\n", 3);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_instructions2.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/20 19:26:38 by sbellafr          #+#    #+#             */
+/*   Updated: 2023/02/20 19:29:07 by sbellafr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include"push_swap.h"
+
+void	rrb(stack_b *b)
+{
+	int	first_element;
+	int	i;
+
+	i = 0;
+	first_element = b->array[0];
+	while (i < b->top)
+	{
+		b->array[i] = b->array[i + 1];
+		i++;
+	}
+	b->array[b->top] = first_element;
+	write(1, "rrb\n", 4);
+}
+
+void	rra(stack_a *stack)
+{
+	int	first_element;
+	int	i;
+
+	first_element = stack->array[0];
+	i = 0;
+	while (i < stack->top)
+	{
+		stack->array[i] = stack->array[i + 1];
+		i++;
+	}
+	stack->array[stack->top] = first_element;
+	write(1, "rra\n", 4);
+}
+
+void	ra(stack_a *stack)
+{
+	int	top_element;
+	int	i;
+
+	top_element = stack->array[stack->top];
+	i = stack->top;
+	while (i > 0)
+	{
+		stack->array[i] = stack->array[i - 1];
+		i--;
+	}
+	stack->array[0] = top_element;
+	write(1, "ra\n", 3);
+}
+
+void	rb(stack_b *stack)
+{
+	int	top_element;
+	int	i;
+
+	i = stack->top;
+	top_element = stack->array[stack->top];
+	while (i > 0)
+	{
+		stack->array[i] = stack->array[i - 1];
+		i--;
+	}
+	stack->array[0] = top_element;
+	write(1, "rb\n", 3);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_norminette_1.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/20 00:44:00 by sbellafr          #+#    #+#             */
+/*   Updated: 2023/02/20 19:16:31 by sbellafr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+char	**ft_norm(int argc, char *argv[], int i, char **dtr)
+{
+	char	*str;
+	char	*tofree;
+	int		k;
+
+	str = ft_strdup("");
+	while (i < argc)
+	{
+		argv[i] = ft_strjoin(argv[i], " ");
+		i++;
+	}
+	i = 1;
+	while (i < argc)
+	{
+		tofree = str;
+		str = ft_strjoin(str, argv[i]);
+		free(tofree);
+		i++;
+	}
+	dtr = ft_split(str, ' ');
+	k = 0;
+	while (dtr[k])
+	{
+		k++;
+	}
+	return (dtr);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_push_back.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/20 19:04:06 by sbellafr          #+#    #+#             */
+/*   Updated: 2023/02/22 01:21:59 by sbellafr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+int	find_index(int value, stack_b *stack)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack->size)
+	{
+		if (stack->array[i] == value)
+		{
+			return (i);
+		}
+		i++;
+	}
+	return (0);
+}
+
+void	push_sorted_numbers_to_stack_a(stack_a *a, stack_b *b, int *tmp)
+{
+	int	i;
+	int	index;
+	int	j;
+
+	i = b->capacity;
+	j = b->capacity - 1;
+	while (j >= 0)
+	{
+		index = find_index(tmp[j], b);
+		if (index >= i / 2)
+		{
+			while (b->array[b->top] != tmp[j])
+				rb(b);
+			pa(a, b);
+			i--;
+		}
+		else
+		{
+			while (b->array[b->top] != tmp[j])
+				rrb(b);
+			pa(a, b);
+			i--;
+		}
+		j--;
+	}
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_push_to_stack.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/20 01:51:27 by sbellafr          #+#    #+#             */
+/*   Updated: 2023/02/22 01:50:41 by sbellafr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+int	ft_push_to_stack(stack_a *stack, int k, int i, char **dtr)
+{
+	long long	input;
+	int			max;
+	int			min;
+
+	max = 2147483647;
+	min = -2147483648;
+	i = 0;
+	k--;
+	while (k >= 0)
+	{
+		input = ft_atoi(dtr[k]);
+		if (input > max || input < min || ft_strlen(dtr[k]) > 11)
+			ft_error();
+		push(stack, input);
+		i++;
+		k--;
+	}
+	return (i);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_simple_sort.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/01 15:55:05 by sbellafr          #+#    #+#             */
+/*   Updated: 2023/02/22 01:20:30 by sbellafr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+int	check_sort(int *array, int l)
+{
+	int	i;
+
+	i = 0;
+	while (i < l - 1)
+	{
+		if (!(array[i] < array[i + 1]))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+void	sort_3_elements(stack_a *stack, int i)
+{
+	if ((stack->array[i - 2] < stack->array[i - 1])
+		&& (stack->array[i - 1] < stack->array[i - 3]))
+		sa(stack);
+	if ((stack->array[i - 2] < stack->array[i - 1])
+		&& (stack->array[i - 2] > stack->array[i - 3]))
+		sa(stack);
+	if (((stack->array[i - 3] < stack->array[i - 1])
+			&& (stack->array[i - 3] < stack->array[i - 2])))
+		rra(stack);
+	else if (((stack->array[i - 2] > stack->array[i - 3])
+			&& (stack->array[i - 1] < stack->array[i - 3])))
+		sa(stack);
+	if (((stack->array[i - 2] < stack->array[i - 3])
+			&& (stack->array[i - 1] > stack->array[i - 3])))
+		ra(stack);
+}
+
+void	sort_4_elements(stack_a *stack, stack_b *stack_b)
+{
+	int	smallest_index;
+
+	ft_smallest_index(stack, &smallest_index, 4);
+	if (smallest_index == 0)
+		rra(stack);
+	if (smallest_index == 1)
+	{
+		rra(stack);
+		rra(stack);
+	}
+	if (smallest_index == 2)
+		ra(stack);
+	pb(stack, stack_b);
+	sort_3_elements(stack, 3);
+	pa(stack, stack_b);
+}
+
+void	sort_5_elements(stack_a *stack, stack_b *stack_b)
+{
+	int	smallest_index;
+
+	ft_smallest_index(stack, &smallest_index, 5);
+	if (smallest_index == 0)
+		rra(stack);
+	if (smallest_index == 1)
+	{
+		rra(stack);
+		rra(stack);
+	}
+	if (smallest_index == 2)
+	{
+		ra(stack);
+		sa(stack);
+	}
+	if (smallest_index == 3)
+		sa(stack);
+	pb(stack, stack_b);
+	sort_4_elements(stack, stack_b);
+	pa(stack, stack_b);
+}
+
+void	ft_simple_sort(stack_a *stack, stack_b *stack_b, int i)
+{
+	int	d;
+	int	m;
+
+	m = 1;
+	if (i == 2)
+	{
+		if (check_sort(stack->array, i))
+			return ;
+		else
+			sa(stack);
+	}
+	else if (i == 3)
+		sort_3_elements(stack, i);
+	else if (i == 4)
+		sort_4_elements(stack, stack_b);
+	else
+		sort_5_elements(stack, stack_b);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_smallest_index.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/20 17:34:08 by sbellafr          #+#    #+#             */
+/*   Updated: 2023/02/22 01:13:36 by sbellafr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+int	ft_smallest_index(stack_a *stack, int *smallest_index, int i)
+{
+	int	smallest_value;
+	int	j;
+
+	smallest_value = stack->array[0];
+	j = 1;
+	while (j < i)
+	{
+		if (stack->array[j] < smallest_value)
+		{
+			smallest_value = stack->array[j];
+			*smallest_index = j;
+		}
+		j++;
+	}
+	return (*smallest_index);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/01 15:43:12 by sbellafr          #+#    #+#             */
+/*   Updated: 2023/02/22 01:29:34 by sbellafr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include"push_swap.h"
+
+static int	ft_countword(const char *str, int c)
+{
+	size_t	i;
+	size_t	counter;
+
+	i = 0;
+	counter = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] && str[i] != c)
+		{
+			counter++;
+			while (str[i] && str[i] != c)
+				i++;
+		}
+		while (str[i] && str[i] == c)
+			i++;
+	}
+	return (counter);
+}
+
+static char	**alloc(char const *s, char c, char **strs)
+{
+	size_t	counter;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (s[i] != '\0')
+	{
+		counter = 0;
+		if (s[i] && s[i] != c)
+		{
+			while ((s[i] != '\0') && (s[i] != c))
+			{
+				i++;
+				counter++;
+			}
+			strs[j] = ft_calloc(counter + 1, sizeof(char));
+			if (!strs[j])
+				return (NULL);
+			j++;
+		}
+		while (s[i] && s[i] == c)
+			i++;
+	}
+	return (strs);
+}
+
+static char	**fill(char const *s, char c, char **strs)
+{
+	size_t	i;
+	size_t	j;
+	size_t	k;
+
+	i = 0;
+	j = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] && s[i] != c)
+		{
+			k = 0;
+			while (s[i] && s[i] != c)
+			{
+				strs[j][k] = s[i];
+				i++;
+				k++;
+			}
+			j++;
+		}
+		while (s[i] && s[i] == c)
+			i++;
+	}
+	return (strs);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	size_t	count;
+	char	**strs;
+
+	if (!s)
+		return (NULL);
+	count = ft_countword(s, c);
+	strs = ft_calloc(count + 1, sizeof(char *));
+	if (!strs)
+		return (NULL);
+	if (!count)
+		return (strs);
+	strs = alloc(s, c, strs);
+	strs = fill(s, c, strs);
+	return (strs);
+}
+
+long	ft_strlen(char *s)
+{
+	long	i;
+
+	i = 0;
+	if (s)
+	{
+		while (s[i] != '\0')
+		{
+			i++;
+		}	
+	}
+	return (i);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_stack.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/01 15:52:28 by sbellafr          #+#    #+#             */
+/*   Updated: 2023/02/22 01:52:38 by sbellafr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include"push_swap.h"
+
+stack_a	*ft_init_a(int capacity)
+{
+	stack_a	*stack ;
+
+	stack = (struct Stack *)malloc(sizeof(struct Stack));
+	stack->capacity = capacity;
+	stack->top = -1;
+	stack->array = (int *)malloc(stack->capacity * sizeof(int));
+	return (stack);
+}
+
+stack_b	*ft_init_b(int capacity)
+{
+	stack_b	*stack_b ;
+
+	stack_b = (struct Stack_b *)malloc(sizeof(struct Stack_b));
+	stack_b->capacity = capacity;
+	stack_b->size = capacity;
+	stack_b->top = -1;
+	stack_b->array = (int *)malloc(stack_b->capacity * sizeof(int));
+	return (stack_b);
+}
+
+void	push(stack_a *stack, int x)
+{
+	stack->top++;
+	stack->array[stack->top] = x;
+}
+
+void	ft_error(void)
+{
+	write(2, "Error\n", 6);
+	exit(1);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/01 15:51:49 by sbellafr          #+#    #+#             */
+/*   Updated: 2023/02/22 19:29:54 by sbellafr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include"push_swap.h"
+
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t	i;
+	char	*str;
+
+	str = (char *)b;
+	i = 0;
+	while (len > i)
+	{
+		str[i] = c;
+		i++;
+	}
+	return (b);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
+
+	if (count == SIZE_MAX || size == SIZE_MAX)
+		return (NULL);
+	ptr = malloc(count * size);
+	if (ptr == 0)
+		return (NULL);
+	return (ft_memset(ptr, '\0', size * count));
+}
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	char	*str;
+	int		i;
+	int		k;
+
+	i = 0;
+	k = 0;
+	str = malloc(sizeof(char) * (strlen(s1) + strlen(s2) + 1));
+	if (!str)
+		return (NULL);
+	if (s1)
+	{
+		while (s1[i])
+		{
+			str[i] = s1[i];
+			i++;
+		}
+	}
+	while (s2[k] != '\0')
+		str[i++] = s2[k++];
+	str[i] = '\0';
+	return (str);
+}
+
+long long	ft_atoi(const char *str)
+{
+	long long	result;
+	long long	sign;
+	int			i;
+	int			j;
+
+	i = 0;
+	result = 0;
+	sign = 1;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		i++;
+		if (!(str[i] >= '0' || str[i] <= '9'))
+			ft_error();
+		i--;
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	j = i;
+	while (str[i])
+	{
+		if (!((str[i] >= '0' && str[i] <= '9') || str[i] == '"'))
+			ft_error();
+		i++;
+	}
+	i = j;
+	while (str[i] >= '0' && str[i] <= '9' && str[i] != '\0')
+	{
+		result = result * 10 + str[i] - '0';
+		i++;
+	}
+	return (sign * result);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	char	*s2;
+	int		i;
+
+	i = 0;
+	s2 = malloc(sizeof(char) * (strlen(s1) + 1));
+	if (!(s2))
+		return (NULL);
+	while (s1[i] != '\0')
+	{
+		s2[i] = s1[i];
+		i++;
+	}
+	s2[i] = '\0';
+	return (s2);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/01 15:43:36 by sbellafr          #+#    #+#             */
+/*   Updated: 2023/02/21 23:11:19 by sbellafr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+int	main(int argc, char *argv[])
+{
+	int		k;
+	int		i;
+	char	**dtr;
+	stack_b	*stack_b;
+	stack_a	*stack;
+
+	dtr = NULL;
+	i = 1;
+	while (argv[i])
+		ft_check_empty(argv[i++]);
+	i = 1;
+	dtr = ft_norm(argc, argv, i, dtr);
+	k = 0;
+	while (dtr[k])
+		k++;
+	stack_b = ft_init_b(k);
+	stack = ft_init_a(k);
+	i = ft_push_to_stack(stack, k, i, dtr);
+	ft_check_dup(stack);
+	ft_big_little(stack, stack_b, i);
+	return (0);
+}
