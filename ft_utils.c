@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:51:49 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/23 01:07:08 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/23 01:53:43 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,7 @@ long long	ft_atoi(const char *str)
 			sign = -1;
 		i++;
 	}
-	j = i;
-	while (str[i])
-	{
-		if (!((str[i] >= '0' && str[i] <= '9') || str[i] == '"'))
-			ft_error();
-		i++;
-	}
-	i = j;
+	
 	while (str[i] >= '0' && str[i] <= '9' && str[i] != '\0')
 	{
 		result = result * 10 + str[i] - '0';

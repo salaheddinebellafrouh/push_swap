@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:43:36 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/23 01:12:32 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:53:18 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ int	main(int argc, char *argv[])
 
 	dtr = NULL;
 	i = 1;
-	int j = 0;
-	
+		int j = 0;
+	while(argv[i])
+		ft_norminette(argv[i++]);
+	i = 1;
 	while (argv[i])
 		ft_check_empty(argv[i++]);
 	i = 1;

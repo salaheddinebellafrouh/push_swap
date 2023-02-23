@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:55:22 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/23 00:14:30 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:51:41 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct Stack_b
 	int	size;
 	int	*array;
 }	stack_b;
+void	ft_norminette(char *str);
 void		ft_error(void);
 long		ft_strlen(char *str);
 void	ft_chunk(int *k, stack_a *stack, stack_b *stack_b, int *tmp);
