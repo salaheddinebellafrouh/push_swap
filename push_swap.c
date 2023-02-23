@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:43:36 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/22 20:28:24 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/23 01:12:32 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,14 @@ int	main(int argc, char *argv[])
 	stack = ft_init_a(k);
 	i = ft_push_to_stack(stack, k, i, dtr);
 	ft_check_dup(stack);
-
-	while(stack->array[j] && stack->array[j] > stack->array[j + 1])
+int t = 0;
+if(stack->array[stack->top] == 0)
+		t = 1;
+	while(stack->array[j + 1 - t] && stack->array[j] > stack->array[j + 1])
 		j++;
 	if (j == i - 1)
 		exit(0);
+		
 	ft_big_little(stack, stack_b, i);
 
 	return (0);

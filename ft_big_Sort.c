@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 19:49:09 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/22 22:18:40 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/23 01:18:39 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	*ft_duplicate(stack_a *s)
 	int	*dup;
 
 	i = 0;
-	dup = malloc(sizeof(int) * (s->top));
+	dup = malloc(sizeof(int) * (s->top + 1));
 	while (i <= s->top)
 	{
 		dup[i] = s->array[i];
@@ -56,7 +56,6 @@ int	*ft_duplicate(stack_a *s)
 
 void	ft_big_sort(stack_a *stack, stack_b *stack_b, int i)
 {
-	int	r;
 	int	*tmp;
 	int	chunk;
 	int	k;
@@ -66,16 +65,14 @@ void	ft_big_sort(stack_a *stack, stack_b *stack_b, int i)
 	bubble_sort(tmp, i);
 	chunk = i / 5;
 	k = 0;
-	r = 0;
-	ft_chunk(&k, chunk, stack, stack_b, tmp, &r, 1);
-	ft_chunk(&k, chunk * 2, stack, stack_b, tmp, &r, 2);
-	ft_chunk(&k, chunk * 3, stack, stack_b, tmp, &r, 3);
-	ft_chunk(&k, chunk * 4, stack, stack_b, tmp, &r, 4);
-	ft_chunk(&k, chunk * 5 - 1, stack, stack_b, tmp, &r, 5);
-	while (r++ < i)
+	ft_chunk(&k, stack ,stack_b , tmp);
+	ft_chunk_two(&k, stack ,stack_b , tmp);
+	ft_chunk_three(&k, stack ,stack_b , tmp);
+	ft_chunk_four(&k, stack ,stack_b , tmp);
+	ft_chunk_five(&k, stack ,stack_b , tmp);
+	while (k++ < i)
 		pb(stack, stack_b);
 	push_sorted_numbers_to_stack_a (stack, stack_b, tmp);
 	free(tmp);
 	free(stack);
-	free(stack_b);
 }

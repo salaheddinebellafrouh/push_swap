@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 00:44:00 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/22 20:03:22 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/23 01:11:50 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ char	**ft_norm(int argc, char *argv[], int i, char **dtr)
 	}
 	dtr = ft_split(str, ' ');
 	k = 0;
-	while (dtr[k])
-	{
-		k++;
-	}
+free(str);
 	return (dtr);
 }

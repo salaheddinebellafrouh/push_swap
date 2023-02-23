@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:55:05 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/22 01:20:30 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/23 01:18:56 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	sort_5_elements(stack_a *stack, stack_b *stack_b)
 
 void	ft_simple_sort(stack_a *stack, stack_b *stack_b, int i)
 {
-	int	d;
 	int	m;
 
 	m = 1;

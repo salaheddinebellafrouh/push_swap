@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:55:22 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/22 22:21:04 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/23 00:14:30 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ typedef struct Stack_b
 }	stack_b;
 void		ft_error(void);
 long		ft_strlen(char *str);
-void	ft_chunk(int *k, int chunk, stack_a *stack, stack_b *stack_b, int *tmp, int *r, int j);
-void	ft_chunk_two(int *k, int chunk, stack_a *stack, stack_b *stack_b, int *tmp, int *r, int j);
-void	ft_chunk_three(int *k, int chunk, stack_a *stack, stack_b *stack_b, int *tmp, int *r, int j);
-void	ft_chunk_four(int *k, int chunk, stack_a *stack, stack_b *stack_b, int *tmp, int *r, int j);
-void	ft_chunk_five(int *k, int chunk, stack_a *stack, stack_b *stack_b, int *tmp, int *r, int j);
+void	ft_chunk(int *k, stack_a *stack, stack_b *stack_b, int *tmp);
+void	ft_chunk_two(int *k, stack_a *stack, stack_b *stack_b, int *tmp);
+void	ft_chunk_three(int *k, stack_a *stack, stack_b *stack_b, int *tmp);
+void	ft_chunk_four(int *k, stack_a *stack, stack_b *stack_b, int *tmp);
+void	ft_chunk_five(int *k, stack_a *stack, stack_b *stack_b, int *tmp);
 int			ft_smallest_index(stack_a *stack, int *smallest_index, int i);
 int			ft_push_to_stack(stack_a *stack, int k, int i, char **dtr);
 void		ft_big_little(stack_a *stack, stack_b *stack_b, int i);

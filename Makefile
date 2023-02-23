@@ -15,6 +15,7 @@ SRCS			=	ft_big_Sort.c \
 					ft_stack.c \
 					ft_utils.c \
 					push_swap.c \
+					ft_chunks.c \
 					
 OBJS			= $(SRCS:.c=.o)
 
