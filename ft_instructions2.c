@@ -6,13 +6,13 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 19:26:38 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/20 19:29:07 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/23 23:52:46 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
 
-void	rrb(stack_b *b)
+void	rrb(t_stack *b)
 {
 	int	first_element;
 	int	i;
@@ -28,7 +28,7 @@ void	rrb(stack_b *b)
 	write(1, "rrb\n", 4);
 }
 
-void	rra(stack_a *stack)
+void	rra(t_stack *stack)
 {
 	int	first_element;
 	int	i;
@@ -44,7 +44,7 @@ void	rra(stack_a *stack)
 	write(1, "rra\n", 4);
 }
 
-void	ra(stack_a *stack)
+void	ra(t_stack *stack)
 {
 	int	top_element;
 	int	i;
@@ -60,7 +60,7 @@ void	ra(stack_a *stack)
 	write(1, "ra\n", 3);
 }
 
-void	rb(stack_b *stack)
+void	rb(t_stack *stack)
 {
 	int	top_element;
 	int	i;

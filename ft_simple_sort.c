@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:55:05 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/23 01:18:56 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/23 23:53:41 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_sort(int *array, int l)
 	return (0);
 }
 
-void	sort_3_elements(stack_a *stack, int i)
+void	sort_3_elements(t_stack *stack, int i)
 {
 	if ((stack->array[i - 2] < stack->array[i - 1])
 		&& (stack->array[i - 1] < stack->array[i - 3]))
@@ -45,7 +45,7 @@ void	sort_3_elements(stack_a *stack, int i)
 		ra(stack);
 }
 
-void	sort_4_elements(stack_a *stack, stack_b *stack_b)
+void	sort_4_elements(t_stack *stack, t_stack *stack_b)
 {
 	int	smallest_index;
 
@@ -64,7 +64,7 @@ void	sort_4_elements(stack_a *stack, stack_b *stack_b)
 	pa(stack, stack_b);
 }
 
-void	sort_5_elements(stack_a *stack, stack_b *stack_b)
+void	sort_5_elements(t_stack *stack, t_stack *stack_b)
 {
 	int	smallest_index;
 
@@ -88,7 +88,7 @@ void	sort_5_elements(stack_a *stack, stack_b *stack_b)
 	pa(stack, stack_b);
 }
 
-void	ft_simple_sort(stack_a *stack, stack_b *stack_b, int i)
+void	ft_simple_sort(t_stack *stack, t_stack *stack_b, int i)
 {
 	int	m;
 

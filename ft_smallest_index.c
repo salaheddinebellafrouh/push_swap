@@ -6,13 +6,13 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:34:08 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/22 01:13:36 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/23 23:53:46 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_smallest_index(stack_a *stack, int *smallest_index, int i)
+int	ft_smallest_index(t_stack *stack, int *smallest_index, int i)
 {
 	int	smallest_value;
 	int	j;

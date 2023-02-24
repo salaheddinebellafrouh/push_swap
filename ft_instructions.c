@@ -6,13 +6,13 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:50:42 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/20 19:27:28 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/23 23:52:30 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(stack_a *stack)
+void	sa(t_stack *stack)
 {
 	int	store;
 
@@ -22,7 +22,7 @@ void	sa(stack_a *stack)
 	write(1, "sa\n", 3);
 }
 
-void	pa(stack_a *a, stack_b *b)
+void	pa(t_stack *a, t_stack *b)
 {
 	a->top++;
 	a->array[a->top] = b->array[b->top];
@@ -30,7 +30,7 @@ void	pa(stack_a *a, stack_b *b)
 	write(1, "pa\n", 3);
 }
 
-void	pb(stack_a *a, stack_b *b)
+void	pb(t_stack *a, t_stack *b)
 {
 	b->top++;
 	b->array[b->top] = a->array[a->top];

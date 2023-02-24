@@ -6,25 +6,36 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:43:36 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/23 16:53:18 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/24 00:34:54 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_check_sorted(t_stack *stack, int *i)
+{
+	int	t;
+	int	j;
+
+	t = 0;
+	j = 0;
+	if (stack->array[stack->top] == 0)
+		t = 1;
+	while (stack->array[j + 1 - t] && stack->array[j] > stack->array[j + 1])
+		j++;
+	if (j == (*i) - 1)
+		exit(0);
+}
 
 int	main(int argc, char *argv[])
 {
 	int		k;
 	int		i;
 	char	**dtr;
-	stack_b	*stack_b;
-	stack_a	*stack;
+	t_stack	*stack_b;
+	t_stack	*stack;
 
 	dtr = NULL;
-	i = 1;
-		int j = 0;
-	while(argv[i])
-		ft_norminette(argv[i++]);
 	i = 1;
 	while (argv[i])
 		ft_check_empty(argv[i++]);
@@ -37,15 +48,7 @@ int	main(int argc, char *argv[])
 	stack = ft_init_a(k);
 	i = ft_push_to_stack(stack, k, i, dtr);
 	ft_check_dup(stack);
-int t = 0;
-if(stack->array[stack->top] == 0)
-		t = 1;
-	while(stack->array[j + 1 - t] && stack->array[j] > stack->array[j + 1])
-		j++;
-	if (j == i - 1)
-		exit(0);
-		
+	ft_check_sorted(stack, &i);
 	ft_big_little(stack, stack_b, i);
-
 	return (0);
 }

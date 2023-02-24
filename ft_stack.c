@@ -6,15 +6,15 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:52:28 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/22 19:49:36 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/23 23:54:31 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
 
-stack_a	*ft_init_a(int capacity)
+t_stack	*ft_init_a(int capacity)
 {
-	stack_a	*stack ;
+	t_stack	*stack ;
 
 	stack = (struct Stack *)malloc(sizeof(struct Stack));
 	stack->capacity = capacity;
@@ -23,11 +23,11 @@ stack_a	*ft_init_a(int capacity)
 	return (stack);
 }
 
-stack_b	*ft_init_b(int capacity)
+t_stack	*ft_init_b(int capacity)
 {
-	stack_b	*stack_b ;
+	t_stack	*stack_b ;
 
-	stack_b = (struct Stack_b *)malloc(sizeof(struct Stack_b));
+	stack_b = (struct Stack *)malloc(sizeof(struct Stack));
 	stack_b->capacity = capacity;
 	stack_b->size = capacity;
 	stack_b->top = -1;
@@ -35,7 +35,7 @@ stack_b	*ft_init_b(int capacity)
 	return (stack_b);
 }
 
-void	push(stack_a *stack, int x)
+void	push(t_stack *stack, int x)
 {
 	stack->top++;
 	stack->array[stack->top] = x;

@@ -6,13 +6,13 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 19:04:06 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/22 01:21:59 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/23 23:53:11 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_index(int value, stack_b *stack)
+int	find_index(int value, t_stack *stack)
 {
 	int	i;
 
@@ -28,7 +28,7 @@ int	find_index(int value, stack_b *stack)
 	return (0);
 }
 
-void	push_sorted_numbers_to_stack_a(stack_a *a, stack_b *b, int *tmp)
+void	push_sorted_numbers_to_stack_a(t_stack *a, t_stack *b, int *tmp)
 {
 	int	i;
 	int	index;
