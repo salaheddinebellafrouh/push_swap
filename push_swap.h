@@ -6,18 +6,15 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:55:22 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/24 00:05:18 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:05:18 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <string.h>
-# include <stdint.h>
 
 typedef struct Stack
 {
@@ -42,8 +39,6 @@ void		ft_check_dup(t_stack *stack);
 char		**ft_norm(int argc, char *argv[], int i, char **dtr);
 void		ft_check_empty(char *str);
 void		push_sorted_numbers_to_stack_a(t_stack *a, t_stack *b, int *tmp);
-void		move_biggest_to_top(t_stack *a, t_stack *b);
-void		push_back(t_stack *stack_a, t_stack *stack_b);
 void		rb(t_stack *stack);
 void		sa(t_stack *stack);
 void		rra(t_stack *stack);
@@ -57,11 +52,9 @@ char		**ft_split(char const *s, char c);
 void		ft_simple_sort(t_stack *stack, t_stack *stack_b, int i);
 t_stack		*ft_init_b(int capacity);
 char		*ft_strjoin(char *s1, char *s2);
-long long	ft_atoi(const char *str);
-char		*ft_strdup(const char *s1);
-int			check_sort(int *array, int l);
+long		ft_atoi(char *str);
+char		*ft_strdup(char *s1);
 void		*ft_calloc(size_t count, size_t size);
 void		ft_big_sort(t_stack *stack, t_stack *stack_b, int i);
-int			index_biggest(t_stack *stack_b, int i);
 
 #endif

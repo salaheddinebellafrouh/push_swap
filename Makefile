@@ -1,3 +1,4 @@
+NAME			= push_swap
 
 
 SRCS			=	ft_big_Sort.c \
@@ -19,24 +20,16 @@ SRCS			=	ft_big_Sort.c \
 					
 OBJS			= $(SRCS:.c=.o)
 
-CC				= gcc
-RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror -I.
-
-NAME			= push_swap.a
 
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				ar rcs $(NAME) $(OBJS)
+				gcc -Wall -Wextra -Werror $(OBJS) -o $(NAME)
 
 clean:
-				$(RM) $(OBJS)
+				rm -f $(OBJS)
 
 fclean:			clean
-				$(RM) $(NAME)
+				rm -f $(NAME)
 
 re:				fclean $(NAME)
-
-
-.PHONY:			all clean fclean re bonus

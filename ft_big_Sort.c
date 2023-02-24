@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 19:49:09 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/24 00:15:01 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:13:23 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,14 @@ void	ft_big_sort(t_stack *stack, t_stack *stack_b, int i)
 	bubble_sort(tmp, i);
 	chunk = i / 5;
 	k = 0;
-	ft_chunk(&k, stack, stack_b, tmp);
-	ft_chunk_two(&k, stack, stack_b, tmp);
-	ft_chunk_three(&k, stack, stack_b, tmp);
-	ft_chunk_four(&k, stack, stack_b, tmp);
-	ft_chunk_five(&k, stack, stack_b, tmp);
+	if (i > 10)
+	{
+		ft_chunk(&k, stack, stack_b, tmp);
+		ft_chunk_two(&k, stack, stack_b, tmp);
+		ft_chunk_three(&k, stack, stack_b, tmp);
+		ft_chunk_four(&k, stack, stack_b, tmp);
+		ft_chunk_five(&k, stack, stack_b, tmp);
+	}
 	while (k++ < i)
 		pb(stack, stack_b);
 	push_sorted_numbers_to_stack_a (stack, stack_b, tmp);

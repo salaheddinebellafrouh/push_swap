@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:43:12 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/22 01:29:34 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/24 01:51:27 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,15 +109,13 @@ char	**ft_split(char const *s, char c)
 
 long	ft_strlen(char *s)
 {
-	long	i;
+	size_t	i;
 
 	i = 0;
 	if (s)
 	{
 		while (s[i] != '\0')
-		{
 			i++;
-		}	
 	}
 	return (i);
 }

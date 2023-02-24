@@ -6,7 +6,7 @@
 /*   By: sbellafr <sbellafr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:51:49 by sbellafr          #+#    #+#             */
-/*   Updated: 2023/02/24 01:12:46 by sbellafr         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:09:31 by sbellafr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	k = 0;
-	str = malloc(sizeof(char) * (strlen(s1) + strlen(s2) + 1));
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!str)
 		return (NULL);
 	if (s1)
@@ -64,51 +64,42 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
-long long	ft_atoi(const char *str)
+long	ft_atoi(char *str)
 {
-	long long	result;
-	long long	sign;
-	int			i;
-	int			j;
+	long	result;
+	long	sign;
+	int		i;
+	int		j;
 
 	i = 0;
 	result = 0;
 	sign = 1;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
 		i++;
 		if (!(str[i] >= '0' && str[i] <= '9'))
 			ft_error();
-		i--;
-		if (str[i] == '-')
+		if (str[--i] == '-')
 			sign = -1;
 		i++;
 	}
-	j = i;
-	while (str[i])
-	{
+	j = i--;
+	while (str[++i])
 		if (!((str[i] >= '0' && str[i] <= '9') || str[i] == '"'))
 			ft_error();
-		i++;
-	}
 	i = j;
 	while (str[i] >= '0' && str[i] <= '9' && str[i] != '\0')
-	{
-		result = result * 10 + str[i] - '0';
-		i++;
-	}
+		result = result * 10 + str[i++] - '0';
 	return (sign * result);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(char *s1)
 {
 	char	*s2;
 	int		i;
 
 	i = 0;
-	s2 = malloc(sizeof(char) * (strlen(s1) + 1));
+	s2 = malloc(sizeof(char) * (ft_strlen(s1) + 1));
 	if (!(s2))
 		return (NULL);
 	while (s1[i] != '\0')
